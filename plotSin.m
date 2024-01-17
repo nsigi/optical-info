@@ -1,0 +1,24 @@
+clear;
+beta = 0.1;
+alpha = 1;
+n = 1000;
+a = 50;
+hx = 2*a/n;
+x = -a:hx:(a-hx/2);
+p = 10;
+m = 1000;
+hxi = 2*p/m;
+xi = (-p:hxi:(p-hxi/2));
+f = exp(1i*beta*x);
+[X, XI] = meshgrid(x, xi);
+Kernel = exp(-alpha*abs(X.-XI));
+F = Kernel*f.'*hx;
+figure(1, 'position',[500, 200, 1100, 1100]);
+plot(x, abs(f));
+figure(2, 'position',[500, 200, 1100, 1100]);
+plot(x, arg(f));
+figure(3, 'position',[500, 200, 1100, 1100]);
+plot(xi, abs(F));
+figure(4, 'position',[500, 200, 1100, 1100]);
+plot(xi, arg(F));
+
